@@ -9,6 +9,10 @@ import com.moofMonkey.ARGBUtils;
 import com.moofMonkey.audio.Wav;
 
 public class PNGVerticalMode extends CryptoProcessor {
+	public PNGVerticalMode() {
+		bytesPerPixel = 4;
+	}
+	
 	@Override
 	public void wav2this(String pathForImage, byte[] audioData, int width, int height) throws Throwable {
 		BufferedImage img = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);

@@ -9,6 +9,8 @@ import it.sauronsoftware.jave.Encoder;
 import it.sauronsoftware.jave.EncodingAttributes;
 
 public class CryptoProcessor {
+	public int bytesPerPixel;
+	
 	public void wav2this(String pathForImage, byte[] audioData, int _width, int _height) throws Throwable {  }
 	public void this2wav(String pathToImage, String pathForWAV, int dataLen) throws Throwable {  }
 	

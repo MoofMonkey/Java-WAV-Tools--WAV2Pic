@@ -5,8 +5,6 @@ import com.moofMonkey.cryptos.CryptoProcessor;
 import com.moofMonkey.cryptos.PNGVerticalMode;
 
 public class Main {
-	static int width = 3840;
-	static int height = 2160;
 	static CryptoProcessor crypto =  new PNGVerticalMode();
 	
 	public static void main(String[] args) throws Throwable {
@@ -21,7 +19,8 @@ public class Main {
 			System.out.println(wav.getSummary());
 			byte[] audioData = wav.audioData;
 			
-			crypto.wav2this(args[1], audioData, width, height);
+			PixelData pd = PixelData.getNearest(audioData.length / crypto.bytesPerPixel);
+			crypto.wav2this(args[1], audioData, pd.width, pd.height);
 		} else
 			if(args.length >= 4)
 				crypto.this2wav(args[0], args[1], Integer.parseInt(args[3]));
