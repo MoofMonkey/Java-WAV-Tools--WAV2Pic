@@ -15,21 +15,21 @@ public class Main {
 			return;
 		}
 		
-		Wav wav = new Wav(args[0]);
-		wav.read();
-		System.out.println(wav.getSummary());
-		byte[] audioData = wav.audioData;
-		
-		if(Boolean.parseBoolean(args[2]))
-			crypto.wav2this(args[1], audioData, width, height);
-		else
+		if(Boolean.parseBoolean(args[2])) {
+			Wav wav = new Wav(args[0]);
+			wav.read();
+			System.out.println(wav.getSummary());
+			byte[] audioData = wav.audioData;
+			
+			crypto.wav2this(args[0], audioData, width, height);
+		} else
 			if(args.length >= 4)
-				crypto.this2wav(args[1], wav, Integer.parseInt(args[3]));
+				crypto.this2wav(args[0], Integer.parseInt(args[3]));
 			else
-				crypto.this2wav(args[1], wav, -1);
+				crypto.this2wav(args[0], -1);
 	}
 
 	private static void showHelp() {
-		System.out.println("java -jar WAV2Pic.jar <amyWAV> <new png/wav path> <wav/png (true/false)> [dataLen]");
+		System.out.println("java -jar WAV2Pic.jar <source> <destination> <encode?> [dataLen]");
 	}
 }
