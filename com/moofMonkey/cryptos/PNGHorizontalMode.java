@@ -35,7 +35,7 @@ public class PNGHorizontalMode extends CryptoProcessor {
 	}
 
 	@Override
-	public void this2wav(String pathToImage, Wav template, int dataLen) throws Throwable {
+	public void this2wav(String pathToImage, int dataLen) throws Throwable {
 		BufferedImage img = ImageIO.read(new File(pathToImage));
 		int width = img.getWidth();
 		int height = img.getHeight();
@@ -71,8 +71,9 @@ public class PNGHorizontalMode extends CryptoProcessor {
 			myNum = myNum + 4;
 		}
 
-		template.audioData = bArr;
-		template.setPath(pathToImage + ".wav");
-		saveAsMP3(template);
+		Wav wav = new Wav();
+		wav.audioData = bArr;
+		wav.setPath(pathToImage + ".wav");
+		saveAsMP3(wav);
 	}
 }
