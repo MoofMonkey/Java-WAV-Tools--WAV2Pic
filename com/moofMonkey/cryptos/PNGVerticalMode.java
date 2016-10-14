@@ -35,7 +35,7 @@ public class PNGVerticalMode extends CryptoProcessor {
 	}
 
 	@Override
-	public void this2wav(String pathToImage, int dataLen) throws Throwable {
+	public void this2wav(String pathToImage, String pathForWAV, int dataLen) throws Throwable {
 		BufferedImage img = ImageIO.read(new File(pathToImage));
 		int width = img.getWidth();
 		int height = img.getHeight();
@@ -73,7 +73,7 @@ public class PNGVerticalMode extends CryptoProcessor {
 
 		Wav wav = new Wav();
 		wav.audioData = bArr;
-		wav.setPath(pathToImage + ".wav");
+		wav.setPath(pathForWAV);
 		saveAsMP3(wav);
 	}
 }

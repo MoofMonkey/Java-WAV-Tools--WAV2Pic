@@ -21,12 +21,12 @@ public class Main {
 			System.out.println(wav.getSummary());
 			byte[] audioData = wav.audioData;
 			
-			crypto.wav2this(args[0], audioData, width, height);
+			crypto.wav2this(args[1], audioData, width, height);
 		} else
 			if(args.length >= 4)
-				crypto.this2wav(args[0], Integer.parseInt(args[3]));
+				crypto.this2wav(args[0], args[1], Integer.parseInt(args[3]));
 			else
-				crypto.this2wav(args[0], -1);
+				crypto.this2wav(args[0], args[1], -1);
 	}
 
 	private static void showHelp() {
