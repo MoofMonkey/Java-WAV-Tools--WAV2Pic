@@ -11,19 +11,11 @@ public class PixelData {
 	}
 	
 	public static PixelData getPixelData(int num) throws Throwable {
-		int xy = floorMax(Math.sqrt(num)); // 1:1
+		int xy = (int) Math.round(Math.sqrt(num)); // 1:1
 		
 		return new PixelData (
 			xy,
 			xy
 		);
-	}
-	
-	public static int floorMax(double i) {
-		int floor = (int) (i / 1);
-		if(i > floor)
-			floor =+ 1;
-		
-		return floor;
 	}
 }
