@@ -1,6 +1,7 @@
 package com.moofMonkey.cryptos;
 
 import java.io.File;
+import java.nio.file.Files;
 
 import com.moofMonkey.audio.Wav;
 
@@ -36,7 +37,17 @@ public class CryptoProcessor {
 		Encoder e = new Encoder();
 		
 		String mp3Post = ".mp3";
-		e.encode(f, new File(path + (path.endsWith(mp3Post) ? "" : mp3Post)), ea);
+		File mp3 = new File(path + (path.endsWith(mp3Post) ? "" : mp3Post));
+		e.encode(f, mp3, ea);
 		wav.setPath(path);
+		
+		if(Files.size(mp3.toPath()) == 0) {
+			String s = path;
+			if(s.endsWith(mp3Post))
+				s = s.substring(0, s.length() - mp3Post.length());
+			s += ".wav";
+			System.out.println("MP3 may not correctly saved. Saving to WAV");
+			wav.setPath(s).save();
+		}
 	}
 }
