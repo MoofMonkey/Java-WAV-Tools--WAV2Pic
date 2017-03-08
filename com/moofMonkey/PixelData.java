@@ -1,11 +1,9 @@
 package com.moofMonkey;
 
-public enum PixelData {
-	FOUR(3840, 2160),
-	SIXTEEN(15360, 8640),
-	SIXTY_FOUR(61440, 34560),
-	;
-	
+import java.util.ArrayList;
+import java.util.Collections;
+
+public class PixelData {
 	int width,  height, pixels;
 	
 	private PixelData(int _width, int _height) {
@@ -15,13 +13,26 @@ public enum PixelData {
 		pixels = width * height;
 	}
 	
-	public static PixelData getNearest(int num) throws Throwable {
-		PixelData last = null;
-		for(PixelData pd : values())
-			if(num < pd.pixels)
-				if(last == null || pd.pixels < last.pixels)
-					last = pd;
+	public static PixelData getPixelData(int num) throws Throwable {
+		ArrayList<Integer> factors = getFactors(num);
 		
-		return last;
+		int width = factors.get(factors.size() - 1); // Get last factor for ~1:1
+		int height = num / width;
+		
+		return new PixelData (
+			width,
+			height
+		);
+	}
+	
+	public static ArrayList<Integer> getFactors(int num) {
+		int upperlimit = (int)(Math.sqrt(num));
+		ArrayList<Integer> factors = new ArrayList<Integer>();
+		for(int i = 1; i <= upperlimit; i += 1)
+			if (num % i == 0)
+				factors.add(i);
+		
+		Collections.sort(factors);
+		return factors;
 	}
 }
